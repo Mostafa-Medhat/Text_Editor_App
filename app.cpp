@@ -1,8 +1,6 @@
 #include "app.h"
-#include <iostream>
-using namespace std;
 
-App::App(QWidget *parent) : QMainWindow(parent), windowSize(100)
+App::App(QWidget *parent) : QMainWindow(parent), windowSize(100), isTextModified(false), currentFile(QString())
 {
     ui.setupUi(this);
     ui.statusbar->addPermanentWidget(windowStatus);
@@ -11,6 +9,9 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100)
     init_fontSize = fontSize;
     init_windowSize = windowSize;
 
+    connect(ui.plainTextEdit, &QPlainTextEdit::textChanged, this, [this]()
+            { isTextModified = true; });
+
     // SetUp Signals-Slots Connections
     connect(ui.actionNew, &QAction::triggered, this, &App::new_textFile);
     connect(ui.actionCopy, &QAction::triggered, this, &App::copy_text);
@@ -18,11 +19,65 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100)
     connect(ui.actionPaste, &QAction::triggered, this, &App::paste_text);
     connect(ui.actionIncrease_Font, &QAction::triggered, this, &App::increase_font);
     connect(ui.actionDecrease_Font, &QAction::triggered, this, &App::decrease_font);
+    connect(ui.actionSave_As, &QAction::triggered, this, &App::save_as_textFile);
+    connect(ui.actionSave, &QAction::triggered, this, &App::save_textFile);
 }
 
 void App::new_textFile()
 {
+    if (isTextModified) {
+        QMessageBox::StandardButton reply = QMessageBox::warning(
+            this, tr("Unsaved Changes"),
+            tr("The document has unsaved changes. Do you want to save them?"),
+            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel
+        );
+
+        if (reply == QMessageBox::Save) {
+            if (!save_textFile()) {
+                return;  // If save failed, cancel the new action
+            }
+        } else if (reply == QMessageBox::Cancel) {
+            return;  // Do nothing, user canceled the action
+        }
+    }
+
+    // Clear the editor for a new file
     ui.plainTextEdit->clear();
+    currentFile.clear();
+    isTextModified = false;
+}
+
+bool App::save_textFile()
+{
+    if (currentFile.isEmpty())
+    {
+        return save_as_textFile();
+    }
+
+    QFile file(currentFile);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, tr("Error"), tr("Cannot save file: %1").arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream out(&file);
+    out << ui.plainTextEdit->toPlainText();
+    file.close();
+
+    isTextModified = false;
+    return true;
+}
+
+bool App::save_as_textFile()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"), QString(), tr("Text Files (*.txt);;All Files (*)"));
+    if (fileName.isEmpty())
+    {
+        return false; // User canceled save as
+    }
+    currentFile = fileName;
+    return save_textFile();
 }
 
 void App::copy_text()
@@ -54,7 +109,8 @@ void App::cut_text()
         // If no text is selected, select all and copy
         ui.plainTextEdit->selectAll();
         ui.plainTextEdit->cut();
-    }}
+    }
+}
 
 void App::paste_text()
 {

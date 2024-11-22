@@ -2,8 +2,11 @@
 #define APP_H
 
 #include <QMainWindow>
-#include "ui_TextEditor_UI.h" // Include the generated UI header
 #include <QLabel>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QFileDialog>
+#include "ui_TextEditor_UI.h" // Include the generated UI header
 
 class App : public QMainWindow
 {
@@ -14,8 +17,8 @@ class App : public QMainWindow
 private slots:
     void new_textFile();
     // void open_textFile();
-    // void save_textFile();
-    // void save_as_textFile();
+    bool save_textFile();
+    bool save_as_textFile();
     void copy_text();
     void cut_text();
     void paste_text();
@@ -29,6 +32,10 @@ private:
     int windowSize;
     int init_fontSize; 
     int init_windowSize;
+
+    QString currentFile;  // Stores the current file path
+    bool isTextModified;  // Tracks if the text was modified
+
     
     QTextCursor cursor;
     QLabel *windowStatus = new QLabel(tr("%1 %").arg(windowSize));
