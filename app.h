@@ -16,7 +16,7 @@ class App : public QMainWindow
 
 private slots:
     void new_textFile();
-    // void open_textFile();
+    void open_textFile();
     bool save_textFile();
     bool save_as_textFile();
     void copy_text();

@@ -9,6 +9,7 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100), isTextModified
     init_fontSize = fontSize;
     init_windowSize = windowSize;
 
+    // Setup tracking changes in the plain text widget
     connect(ui.plainTextEdit, &QPlainTextEdit::textChanged, this, [this]()
             { isTextModified = true; });
 
@@ -21,6 +22,7 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100), isTextModified
     connect(ui.actionDecrease_Font, &QAction::triggered, this, &App::decrease_font);
     connect(ui.actionSave_As, &QAction::triggered, this, &App::save_as_textFile);
     connect(ui.actionSave, &QAction::triggered, this, &App::save_textFile);
+    connect(ui.actionOpen, &QAction::triggered, this, &App::open_textFile);
 }
 
 void App::new_textFile()
@@ -44,6 +46,30 @@ void App::new_textFile()
     // Clear the editor for a new file
     ui.plainTextEdit->clear();
     currentFile.clear();
+    isTextModified = false;
+}
+
+void App::open_textFile()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open a text file"), QString(), tr("Text File (*.txt);"));
+    if (fileName.isEmpty())
+    {
+        return; // User canceled save as
+    }
+
+     // Open the file for reading
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("Error"), tr("Cannot open file: %1").arg(file.errorString()));
+        return;
+    }
+
+    // Read the file content into the plain text edit
+    QTextStream in(&file);
+    QString fileContent = in.readAll();
+    ui.plainTextEdit->setPlainText(fileContent);
+
+    currentFile = fileName;
     isTextModified = false;
 }
 
