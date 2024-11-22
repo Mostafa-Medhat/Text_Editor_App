@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="/">
+    <file>icons/new.png</file>
+    <file>icons/open.png</file>
+    <file>icons/save.png</file>
+    <file>icons/save as.png</file>
+    <file>icons/copy.png</file>
+    <file>icons/cut.png</file>
+    <file>icons/paste.png</file>
+    <file>icons/text_editor.png</file>
+    <file>icons/Increase Font.png</file>
+    <file>icons/Decrease Font.png</file>
+  </qresource>
+</RCC>
