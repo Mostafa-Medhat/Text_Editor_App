@@ -14,6 +14,8 @@ A **simple and intuitive text editing application** that allows users to write, 
   - Copy (ctrl + C)
   - Cut (ctrl + X)
   - Paste (ctrl + V)
+  - Increase Font Size (ctrl + .)
+  - Decrease Font Size (ctrl + ,)
 
 ### Upcoming Features:
 🚧 **Under Development**
