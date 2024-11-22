@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.9)
 get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${PROJECT_NAME})
 
-set(CMAKE_PREFIX_PATH "C:/Qt/5.15.18/msvc2019_64/lib/cmake")
-
 # Set C++ standard and ensure Qt installation path
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
