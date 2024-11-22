@@ -10,7 +10,7 @@ A **simple and intuitive text editing application** that allows users to write, 
 - **Basic Editing Actions with Shortcuts**:
   - New (ctrl + N)
   - Save (ctrl + S)
-  - Save as (text file)
+  - Save as "text file"
   - Copy (ctrl + C)
   - Cut (ctrl + X)
   - Paste (ctrl + V)
