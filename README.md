@@ -8,15 +8,16 @@ A **simple and intuitive text editing application** that allows users to write, 
 ### Current Features:
 - **Text Writing**: Create and edit text and paragraphs effortlessly.
 - **Basic Editing Actions**:
+  - New
+  - Save
+  - Save as (text file)
   - Copy
   - Cut
   - Paste
 
 ### Upcoming Features:
 🚧 **Under Development**
-- Open an existing text file.  
-- Save text to a file.
-- Save As functionality for custom file names and formats.
+- Open an existing text file.
 - Print text directly from the application.
 - Undo/Redo actions for efficient text management.
 - Enhanced formatting tools (e.g., bold, italic, underline).
