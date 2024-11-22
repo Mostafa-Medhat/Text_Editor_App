@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'TextEditor_UISSOZCu.ui'
+** Form generated from reading UI file 'TextEditor_UIkoRWwH.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.11.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef TEXTEDITOR_UISSOZCU_H
-#define TEXTEDITOR_UISSOZCU_H
+#ifndef TEXTEDITOR_UIKORWWH_H
+#define TEXTEDITOR_UIKORWWH_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
@@ -146,6 +146,10 @@ public:
         menubar->addAction(menuFormat->menuAction());
         menubar->addAction(menuView->menuAction());
         menubar->addAction(menuHelp->menuAction());
+        menuFile->addAction(actionNew);
+        menuFile->addAction(actionOpen);
+        menuFile->addAction(actionSave);
+        menuFile->addAction(actionSave_As);
         toolBar->addAction(actionNew);
         toolBar->addSeparator();
         toolBar->addAction(actionOpen);
@@ -173,14 +177,53 @@ public:
     {
         TextWindow->setWindowTitle(QApplication::translate("TextWindow", "Text Editor", nullptr));
         actionNew->setText(QApplication::translate("TextWindow", "New", nullptr));
+#ifndef QT_NO_STATUSTIP
+        actionNew->setStatusTip(QApplication::translate("TextWindow", "Create New Text File", nullptr));
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_SHORTCUT
+        actionNew->setShortcut(QApplication::translate("TextWindow", "Ctrl+N", nullptr));
+#endif // QT_NO_SHORTCUT
         actionOpen->setText(QApplication::translate("TextWindow", "Open", nullptr));
+#ifndef QT_NO_STATUSTIP
+        actionOpen->setStatusTip(QApplication::translate("TextWindow", "Open A Text File", nullptr));
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_SHORTCUT
+        actionOpen->setShortcut(QApplication::translate("TextWindow", "Ctrl+O", nullptr));
+#endif // QT_NO_SHORTCUT
         actionSave->setText(QApplication::translate("TextWindow", "Save", nullptr));
+#ifndef QT_NO_STATUSTIP
+        actionSave->setStatusTip(QApplication::translate("TextWindow", "Save Current Text File", nullptr));
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_SHORTCUT
+        actionSave->setShortcut(QApplication::translate("TextWindow", "Ctrl+S", nullptr));
+#endif // QT_NO_SHORTCUT
         actionSave_As->setText(QApplication::translate("TextWindow", "Save As", nullptr));
+#ifndef QT_NO_STATUSTIP
+        actionSave_As->setStatusTip(QApplication::translate("TextWindow", "Save Current Text as a Text File", nullptr));
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_WHATSTHIS
+        actionSave_As->setWhatsThis(QApplication::translate("TextWindow", "Save as action button", nullptr));
+#endif // QT_NO_WHATSTHIS
         actionCopy->setText(QApplication::translate("TextWindow", "Copy", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionCopy->setShortcut(QApplication::translate("TextWindow", "Ctrl+C", nullptr));
+#endif // QT_NO_SHORTCUT
         actionCut->setText(QApplication::translate("TextWindow", "Cut", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionCut->setShortcut(QApplication::translate("TextWindow", "Ctrl+X", nullptr));
+#endif // QT_NO_SHORTCUT
         actionPaste->setText(QApplication::translate("TextWindow", "Paste", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionPaste->setShortcut(QApplication::translate("TextWindow", "Ctrl+V", nullptr));
+#endif // QT_NO_SHORTCUT
         actionIncrease_Font->setText(QApplication::translate("TextWindow", "Increase Font", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionIncrease_Font->setShortcut(QApplication::translate("TextWindow", "Ctrl+Shift+.", nullptr));
+#endif // QT_NO_SHORTCUT
         actionDecrease_Font->setText(QApplication::translate("TextWindow", "Decrease Font", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionDecrease_Font->setShortcut(QApplication::translate("TextWindow", "Ctrl+Shift+,", nullptr));
+#endif // QT_NO_SHORTCUT
         menuFile->setTitle(QApplication::translate("TextWindow", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("TextWindow", "Edit", nullptr));
         menuFormat->setTitle(QApplication::translate("TextWindow", "Format", nullptr));
@@ -197,4 +240,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // TEXTEDITOR_UISSOZCU_H
+#endif // TEXTEDITOR_UIKORWWH_H
