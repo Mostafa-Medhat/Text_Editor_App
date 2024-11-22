@@ -7,13 +7,13 @@ A **simple and intuitive text editing application** that allows users to write, 
 ## Features
 ### Current Features:
 - **Text Writing**: Create and edit text and paragraphs effortlessly.
-- **Basic Editing Actions**:
-  - New
-  - Save
+- **Basic Editing Actions with Shortcuts**:
+  - New (ctrl + N)
+  - Save (ctrl + S)
   - Save as (text file)
-  - Copy
-  - Cut
-  - Paste
+  - Copy (ctrl + C)
+  - Cut (ctrl + X)
+  - Paste (ctrl + V)
 
 ### Upcoming Features:
 🚧 **Under Development**
