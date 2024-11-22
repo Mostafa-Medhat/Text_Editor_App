@@ -1,4 +1,4 @@
-# Editing Text App
+# Text Editor App
 
 A **simple and intuitive text editing application** that allows users to write, edit, and manage text efficiently. Built using the [Qt C++ Framework](https://www.qt.io/), this application provides essential text editing functionalities and is designed to be lightweight and user-friendly.
 
