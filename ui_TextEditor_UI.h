@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'TextEditor_UIkoRWwH.ui'
+** Form generated from reading UI file 'TextEditor_UIupzwil.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.11.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef TEXTEDITOR_UIKORWWH_H
-#define TEXTEDITOR_UIKORWWH_H
+#ifndef TEXTEDITOR_UIUPZWIL_H
+#define TEXTEDITOR_UIUPZWIL_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
@@ -36,6 +36,8 @@ public:
     QAction *actionPaste;
     QAction *actionIncrease_Font;
     QAction *actionDecrease_Font;
+    QAction *actionUndo;
+    QAction *actionDelete;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QPlainTextEdit *plainTextEdit;
@@ -101,6 +103,10 @@ public:
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/icons/Decrease Font.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionDecrease_Font->setIcon(icon9);
+        actionUndo = new QAction(TextWindow);
+        actionUndo->setObjectName(QStringLiteral("actionUndo"));
+        actionDelete = new QAction(TextWindow);
+        actionDelete->setObjectName(QStringLiteral("actionDelete"));
         centralwidget = new QWidget(TextWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -150,6 +156,11 @@ public:
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_As);
+        menuEdit->addAction(actionUndo);
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionCopy);
+        menuEdit->addAction(actionCut);
+        menuEdit->addAction(actionPaste);
         toolBar->addAction(actionNew);
         toolBar->addSeparator();
         toolBar->addAction(actionOpen);
@@ -204,6 +215,9 @@ public:
 #ifndef QT_NO_WHATSTHIS
         actionSave_As->setWhatsThis(QApplication::translate("TextWindow", "Save as action button", nullptr));
 #endif // QT_NO_WHATSTHIS
+#ifndef QT_NO_SHORTCUT
+        actionSave_As->setShortcut(QApplication::translate("TextWindow", "Ctrl+Shift+S", nullptr));
+#endif // QT_NO_SHORTCUT
         actionCopy->setText(QApplication::translate("TextWindow", "Copy", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionCopy->setShortcut(QApplication::translate("TextWindow", "Ctrl+C", nullptr));
@@ -224,6 +238,11 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionDecrease_Font->setShortcut(QApplication::translate("TextWindow", "Ctrl+Shift+,", nullptr));
 #endif // QT_NO_SHORTCUT
+        actionUndo->setText(QApplication::translate("TextWindow", "Undo", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionUndo->setShortcut(QApplication::translate("TextWindow", "Ctrl+Z", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionDelete->setText(QApplication::translate("TextWindow", "Delete", nullptr));
         menuFile->setTitle(QApplication::translate("TextWindow", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("TextWindow", "Edit", nullptr));
         menuFormat->setTitle(QApplication::translate("TextWindow", "Format", nullptr));
@@ -240,4 +259,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // TEXTEDITOR_UIKORWWH_H
+#endif // TEXTEDITOR_UIUPZWIL_H

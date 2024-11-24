@@ -9,6 +9,11 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100), isTextModified
     init_fontSize = fontSize;
     init_windowSize = windowSize;
 
+    init_connections();
+}
+
+void App::init_connections()
+{
     // Setup tracking changes in the plain text widget
     connect(ui.plainTextEdit, &QPlainTextEdit::textChanged, this, [this]()
             { isTextModified = true; });
@@ -27,19 +32,23 @@ App::App(QWidget *parent) : QMainWindow(parent), windowSize(100), isTextModified
 
 void App::new_textFile()
 {
-    if (isTextModified) {
+    if (isTextModified)
+    {
         QMessageBox::StandardButton reply = QMessageBox::warning(
             this, tr("Unsaved Changes"),
             tr("The document has unsaved changes. Do you want to save them?"),
-            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel
-        );
+            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 
-        if (reply == QMessageBox::Save) {
-            if (!save_textFile()) {
-                return;  // If save failed, cancel the new action
+        if (reply == QMessageBox::Save)
+        {
+            if (!save_textFile())
+            {
+                return; // If save failed, cancel the new action
             }
-        } else if (reply == QMessageBox::Cancel) {
-            return;  // Do nothing, user canceled the action
+        }
+        else if (reply == QMessageBox::Cancel)
+        {
+            return; // Do nothing, user canceled the action
         }
     }
 
@@ -57,9 +66,10 @@ void App::open_textFile()
         return; // User canceled save as
     }
 
-     // Open the file for reading
+    // Open the file for reading
     QFile file(fileName);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
         QMessageBox::warning(this, tr("Error"), tr("Cannot open file: %1").arg(file.errorString()));
         return;
     }
@@ -145,21 +155,25 @@ void App::paste_text()
 
 void App::increase_font()
 {
-    windowSize = (int)(init_windowSize * ((float)fontSize + 2) / init_fontSize);
+    windowSize = (int)(init_windowSize * ((float)fontSize + fontSize_change) / init_fontSize);
     windowStatus->setText(tr("%1 %").arg(windowSize));
 
-    fontSize += 2;
-    auto tempFont = ui.plainTextEdit->font();
-    tempFont.setPointSize(fontSize);
-    ui.plainTextEdit->setFont(tempFont);
+    fontSize += fontSize_change;
+    update_font(fontSize);
+
 }
 
 void App::decrease_font()
 {
-    windowSize = (int)(init_windowSize * ((float)fontSize - 2) / init_fontSize);
+    windowSize = (int)(init_windowSize * ((float)fontSize - fontSize_change) / init_fontSize);
     windowStatus->setText(tr("%1 %").arg(windowSize));
 
-    fontSize -= 2;
+    fontSize -= fontSize_change;
+    update_font(fontSize);
+}
+
+void App::update_font(int fontSize)
+{
     auto tempFont = ui.plainTextEdit->font();
     tempFont.setPointSize(fontSize);
     ui.plainTextEdit->setFont(tempFont);

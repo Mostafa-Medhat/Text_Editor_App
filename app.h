@@ -32,13 +32,17 @@ private:
     int windowSize;
     int init_fontSize; 
     int init_windowSize;
+    int fontSize_change = 1;
 
     QString currentFile;  // Stores the current file path
     bool isTextModified;  // Tracks if the text was modified
 
-    
     QTextCursor cursor;
     QLabel *windowStatus = new QLabel(tr("%1 %").arg(windowSize));
+
+    void App::init_connections();
+    void App::update_font(int fontSize);
+
 };
 
 #endif // APP_H
